@@ -36,9 +36,10 @@ while True:
                 k = k[:50]
 	    post = {}
 	    post["data"] = k
-	    post["label"] = 1
+	    post["label"] = "test"
             if len(k) == 50:
 	        post_id = posts.insert(post)
+                print(post_id)
                 counters += 1
                 print("counter",counters)
             print(l)
