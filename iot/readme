@@ -2,4 +2,5 @@ this is a iot project for gesture recognition
 server.py receives data and put data into MongoDB
 sk.py reads data from MongoDB and trains the model 
 clf is the trained multiclass svc model
-wse.py receives requests from MCU to send tweets, collect weather imformation and do gesture regconigtion, and send back response to MCU to display the information on oled
+wse.py receives requests from MCU to send tweets, 
+collect weather imformation and do gesture regconigtion, and send back response to MCU to display the information on oled
