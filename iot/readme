@@ -1,4 +1,7 @@
-this is a iot project for gesture recognition
+this is a iot project "smart wacth" 
+which can receive voice command from an android app
+to send tweets, display weather, and do gesture recognition,
+the code is for the server side. 
 
 server.py receives data and put data into MongoDB
 
