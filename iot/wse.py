@@ -16,7 +16,7 @@ def weather():
     weatherURL = "http://api.openweathermap.org/data/2.5/weather?"
     APIkey = "e705bd48be7042195981bfe518892515"
     weatherURL += "lat=" + str(int(latitute)) + "&lon=" + str(int(lng)) + "&APPID=" + APIkey
-    response = post(weatherURL)
+    response = requests.post(weatherURL)
     Dict = response.json()
     tempInfo = Dict['weather'][0]
     temp = Dict['main']
@@ -36,16 +36,14 @@ def tweets(tweet):
       
     # authentication of consumer key and secret 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret) 
-        
-    # authentication of access token and secret 
-    auth.set_access_token(access_token, access_token_secret) 
-    api = tweepy.API(auth) 
-          
+    api = get_api(cfg)    
     # update the status 
-    api.update_status(status = tweet)
-
+    try:
+        status = api.update_status(status = tweet)
+    except tweepy.error.TweepError:
+        pass
 serverSocket = socket(AF_INET, SOCK_STREAM)
-serverSocket.bind(('', 8080))
+serverSocket.bind(('', 8085))
 serverSocket.listen(1)
 print('The server is ready to receive')
 count = 0
@@ -57,16 +55,7 @@ while True:
         connectionSocket.close()
     else:
         data1 = json.loads(data)
-        if data1 == "weather":
-            res = json.dumps(weather())
-            connectionSocket.send(res)
-            connectionSocket.close()
-        elif data1.find("tweets") >= 0:
-            tweet = data1[:9]
-            tweets(tweet)
-            connectionSocket.send(b'cool')
-            connectionSocket.close()
-        else:
+        if (isinstance(data1, list)):
             l = l + data1
             count += 1
             if count == 10:
@@ -105,6 +94,15 @@ while True:
                 print(len(k))
                 count = 0
                 l = [] 
+            connectionSocket.close()
+        elif data1 == "weather":
+            res = json.dumps(weather())
+            connectionSocket.send(res)
+            connectionSocket.close()
+        elif data1.find("tweets") >= 0:
+            tweet = data1[9:]
+            tweets(tweet)
+            connectionSocket.send(b'cool')
             connectionSocket.close()
 # m =ii (l.length()-1)/d + 1
 # from pymongo import MongoClint
