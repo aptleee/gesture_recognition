@@ -7,7 +7,7 @@ import numpy as np
 from sklearn.svm import SVC
 import requests
 def weather():
-    response = requests.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDtssI2pFiAwJZ7RnUlAvphbFmoHaWBoTo",data="geolocation-data")
+    response = requests.post("https://www.googleapis.com/geolocation/v1/geolocate?key=",data="geolocation-data")
     locationDict = response.json()
     location = locationDict["location"]
     accu = locationDict["accuracy"]
