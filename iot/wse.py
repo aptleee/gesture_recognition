@@ -29,10 +29,10 @@ def weather():
 
 def tweets(tweet):
     # personal details 
-    consumer_key ="nVgBPlIoglqdMdskfDeTLMvwF"
-    consumer_secret ="FQVOiPKxsorF6ebWlJakX4Gnnlp9fLdwH2w6WacjbehqvvaxVB"
-    access_token ="1047658775409319936-xOypj3u3f6dOZfMS9xNmT8qZv7CTSn"
-    access_token_secret ="ez2G5Lz9uLIfafSDzKkidnKr7stB0qIUKrcpuK6TovhBC"
+    consumer_key =""
+    consumer_secret =""
+    access_token =""
+    access_token_secret =""
       
     # authentication of consumer key and secret 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret) 
