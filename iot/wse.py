@@ -42,6 +42,8 @@ def tweets(tweet):
         status = api.update_status(status = tweet)
     except tweepy.error.TweepError:
         pass
+    
+    
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind(('', 8085))
 serverSocket.listen(1)
